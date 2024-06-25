@@ -41,7 +41,9 @@ if st.button("Enter"):
         teleprompter = BootstrapFewShot(metric=validate_hops)
         optimized_program = teleprompter.compile(CoT(), trainset=qa_pair)
         pred = optimized_program(input)
+        original_string = pred.answer
+        updated_string = original_string.replace("\\n", "\n")
         st.header("Predicted answer:")
-        st.write(pred.answer)
+        st.write(updated_string)
         st.info(f"Answer without training: {gpt3_turbo(input)}")
 
